@@ -93,30 +93,17 @@ class _TodoPageState extends State<TodoPage> {
                 ),
               ),
               const SizedBox(height: 20),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: _tasks.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      color:
-                          index % 2 == 0
-                              ? Colors.blue[100]
-                              : Colors.green[100], // Warna selang-seling
-                      child: ListTile(
-                        title: Text(_tasks[index]),
-                        trailing: IconButton(
-                          icon: const Icon(Icons.delete, color: Colors.red),
-                          onPressed: () {
-                            setState(() {
-                              _tasks.removeAt(index);
-                            });
-                          },
-                        ),
-                      ),
-                    );
-                  },
+              Align(
+                alignment: Alignment.centerRight,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.purple,
+                  ),
+                  onPressed: _addTask,
+                  child: const Text('Submit'),
                 ),
               ),
+              const SizedBox(height: 20),
             ],
           ),
         ),
