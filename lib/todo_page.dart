@@ -130,6 +130,17 @@ class _TodoPageState extends State<TodoPage> {
                          padding: const EdgeInsets.all(10.0),
                          child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              _tasks[index]["task"],
+                              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "Deadline: ${DateFormat('dd-MM-yyyy HH:mm').format(_tasks[index]["deadline"])}",
+                              style: const TextStyle(color: Colors.blueGrey),
+                            ),
+                            const SizedBox(height: 5),
+                          ]
                          )
                       )
                     )
