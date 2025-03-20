@@ -67,7 +67,6 @@ class _TodoPageState extends State<TodoPage> {
             Navigator.pop(context);
           },
         ),
-        title: const Text('Form Page', style: TextStyle(fontSize: 24)),
         centerTitle: true,
       ),
       body: SafeArea(
@@ -89,11 +88,24 @@ class _TodoPageState extends State<TodoPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Task Date
+                // Tambahkan teks di atas input form
+                const Center(
+                  child: Text(
+                    "Form Page",
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20), // Jarak agar lebih rapi
+
                 Form(
                   key: _key,
                   child: Column(
                     children: [
+                      // Task Date
                       TextFormField(
                         controller: _dateController,
                         readOnly: true, // Mencegah input manual
@@ -104,24 +116,7 @@ class _TodoPageState extends State<TodoPage> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           suffixIcon: IconButton(
-                            icon: ShaderMask(
-                              shaderCallback: (Rect bounds) {
-                                return const LinearGradient(
-                                  colors: [
-                                    Colors.black,
-                                    Colors.blue,
-                                  ], // Hitam ke Biru
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                ).createShader(bounds);
-                              },
-                              child: const Icon(
-                                Icons.calendar_today,
-                                color:
-                                    Colors
-                                        .white, // Warna digantikan oleh gradient
-                              ),
-                            ),
+                            icon: const Icon(Icons.calendar_today),
                             onPressed: _pickDate,
                           ),
                         ),
@@ -144,14 +139,14 @@ class _TodoPageState extends State<TodoPage> {
                 ),
                 const SizedBox(height: 20),
 
-                // Submit Button dengan Gradient Warna Biru dan Hitam
+                // Submit Button
                 Align(
                   alignment: Alignment.center,
                   child: Container(
-                    width: double.infinity, // Lebar penuh
+                    width: double.infinity,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
-                        colors: [Colors.black, Colors.blue], // Hitam ke Biru
+                        colors: [Colors.black, Colors.blue],
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
@@ -159,11 +154,8 @@ class _TodoPageState extends State<TodoPage> {
                     ),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            Colors
-                                .transparent, // Transparan agar gradient terlihat
-                        shadowColor:
-                            Colors.transparent, // Menghilangkan shadow bawaan
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -191,15 +183,10 @@ class _TodoPageState extends State<TodoPage> {
                     itemBuilder: (context, index) {
                       return Container(
                         margin: const EdgeInsets.symmetric(vertical: 8),
-                        padding: const EdgeInsets.all(
-                          15,
-                        ), // Tambah padding agar lebih longgar
+                        padding: const EdgeInsets.all(15),
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
-                            colors: [
-                              Colors.black,
-                              Colors.blue,
-                            ], // Gradient Hitam ke Biru
+                            colors: [Colors.black, Colors.blue],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
@@ -215,34 +202,21 @@ class _TodoPageState extends State<TodoPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Nama Task
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(), // Jarak antar teks
-                              child: Text(
-                                _tasks[index]["task"],
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white, // Agar lebih kontras
-                                ),
+                            Text(
+                              _tasks[index]["task"],
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
                               ),
                             ),
-
-                            // Tanggal Deadline
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(), // Tambah jarak bawah
-                              child: Text(
-                                "Deadline: ${DateFormat('dd-MM-yyyy').format(_tasks[index]["deadline"])}",
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white70,
-                                ),
+                            Text(
+                              "Deadline: ${DateFormat('dd-MM-yyyy').format(_tasks[index]["deadline"])}",
+                              style: const TextStyle(
+                                fontSize: 16,
+                                color: Colors.white70,
                               ),
                             ),
-
-                            // Checkbox dan Status
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -252,8 +226,8 @@ class _TodoPageState extends State<TodoPage> {
                                     fontSize: 16,
                                     color:
                                         _tasks[index]["isDone"]
-                                            ? Colors.greenAccent
-                                            : Colors.redAccent,
+                                            ? Colors.green
+                                            : Colors.red,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
