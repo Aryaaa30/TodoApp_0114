@@ -80,24 +80,16 @@ class _TodoPageState extends State<TodoPage> {
               const SizedBox(height: 20),
               Form(
                 key: _key,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: TextFormField(
-                        controller: _taskController,
-                        decoration: const InputDecoration(
-                          label: Text('Task'),
-                          hintText: 'Masukkan tugas yang ingin dikumpulkan',
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
+                child: TextFormField(
+                  controller: _taskController,
+                  decoration: InputDecoration(
+                    labelText: "First Name",
+                    hintText: "Enter your first name",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: const BorderSide(color: Colors.purple),
                     ),
-                    const SizedBox(width: 10),
-                    ElevatedButton(
-                      onPressed: _addTask,
-                      child: const Text('Tambah'),
-                    ),
-                  ],
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
