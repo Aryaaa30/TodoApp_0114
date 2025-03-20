@@ -140,6 +140,18 @@ class _TodoPageState extends State<TodoPage> {
                               style: const TextStyle(color: Colors.blueGrey),
                             ),
                             const SizedBox(height: 5),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  _tasks[index]["isDone"] ? "Done" : "Not Done",
+                                  style: TextStyle(
+                                    color: _tasks[index]["isDone"] ? Colors.green : Colors.red,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ]
+                            )
                           ]
                          )
                       )
