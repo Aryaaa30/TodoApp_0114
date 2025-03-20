@@ -53,19 +53,26 @@ class _TodoPageState extends State<TodoPage> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(9.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Form Input Task
+              const Text(
+                "Task Date:",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
               Row(
                 children: [
-                  const CircleAvatar(
-                    radius: 50,
-                    backgroundImage: AssetImage('assets/images/testes.jpg'),
+                  Text(
+                    _selectedDate == null
+                        ? "Select a date"
+                        : DateFormat('dd-MM-yyyy HH:mm').format(_selectedDate!),
                   ),
                   const SizedBox(width: 10),
-                  const Text(
-                    'ShonNaire',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  IconButton(
+                    icon: const Icon(Icons.calendar_today, color: Colors.blue),
+                    onPressed: _pickDate,
                   ),
                 ],
               ),
