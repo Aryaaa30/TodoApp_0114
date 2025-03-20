@@ -13,7 +13,8 @@ class _TodoPageState extends State<TodoPage> {
   final TextEditingController _taskController = TextEditingController();
   DateTime? _selectedDate;
 
-  List<Map<String, dynamic>> _tasks = [];
+  List<Map<String, dynamic>> _tasks =
+      []; // Menyimpan task dengan status dan deadline
 
   void _addTask() {
     if (_taskController.text.isEmpty || _selectedDate == null) {
