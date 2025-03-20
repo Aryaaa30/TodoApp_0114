@@ -49,7 +49,8 @@ class _TodoPageState extends State<TodoPage> {
             Navigator.pop(context); // Kembali ke halaman sebelumnya
           },
         ),
-        title: const Text('Todo Page'),
+        title: const Text('Form Page', style: TextStyle(fontSize: 24)),
+        centerTitle: true,
       ),
       body: SafeArea(
         child: Padding(
