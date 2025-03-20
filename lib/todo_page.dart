@@ -15,7 +15,6 @@ class _TodoPageState extends State<TodoPage> {
 
   List<Map<String, dynamic>> _tasks = [];
 
-
   void _addTask() {
     if (_taskController.text.isEmpty || _selectedDate == null) {
       // Menampilkan SnackBar jika input kosong atau tanggal belum dipilih
@@ -34,7 +33,6 @@ class _TodoPageState extends State<TodoPage> {
       _taskController.clear();
       _selectedDate = null;
     });
-
   }
 
   Future<void> _pickDate() async {
@@ -119,7 +117,10 @@ class _TodoPageState extends State<TodoPage> {
               const SizedBox(height: 20),
 
               // Daftar Task
-              const Text("List Tasks", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              const Text(
+                "List Tasks",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
               Expanded(
                 child: ListView.builder(
                   itemCount: _tasks.length,
@@ -127,13 +128,16 @@ class _TodoPageState extends State<TodoPage> {
                     return Card(
                       color: Colors.grey[200],
                       child: Padding(
-                         padding: const EdgeInsets.all(10.0),
-                         child: Column(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               _tasks[index]["task"],
-                              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             Text(
                               "Deadline: ${DateFormat('dd-MM-yyyy HH:mm').format(_tasks[index]["deadline"])}",
@@ -146,19 +150,31 @@ class _TodoPageState extends State<TodoPage> {
                                 Text(
                                   _tasks[index]["isDone"] ? "Done" : "Not Done",
                                   style: TextStyle(
-                                    color: _tasks[index]["isDone"] ? Colors.green : Colors.red,
+                                    color:
+                                        _tasks[index]["isDone"]
+                                            ? Colors.green
+                                            : Colors.red,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                              ]
-                            )
-                          ]
-                         )
-                      )
-                    )
-                  }
-                )
-              )
+                                Checkbox(
+                                  value: _tasks[index]["isDone"],
+                                  activeColor: Colors.purple,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      _tasks[index]["isDone"] = value!;
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),
