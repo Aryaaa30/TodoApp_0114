@@ -89,7 +89,7 @@ class _TodoPageState extends State<TodoPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Task Date (Menggunakan TextFormField)
+                // Task Date
                 Form(
                   key: _key,
                   child: Column(
@@ -190,8 +190,10 @@ class _TodoPageState extends State<TodoPage> {
                     itemCount: _tasks.length,
                     itemBuilder: (context, index) {
                       return Container(
-                        margin: const EdgeInsets.symmetric(vertical: 5),
-                        padding: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.symmetric(vertical: 8),
+                        padding: const EdgeInsets.all(
+                          15,
+                        ), // Tambah padding agar lebih longgar
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
                             colors: [
@@ -213,25 +215,41 @@ class _TodoPageState extends State<TodoPage> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              _tasks[index]["task"],
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white, // Agar lebih kontras
+                            // Nama Task
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(), // Jarak antar teks
+                              child: Text(
+                                _tasks[index]["task"],
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white, // Agar lebih kontras
+                                ),
                               ),
                             ),
-                            Text(
-                              "Deadline: ${DateFormat('dd-MM-yyyy').format(_tasks[index]["deadline"])}",
-                              style: const TextStyle(color: Colors.white70),
+
+                            // Tanggal Deadline
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(), // Tambah jarak bawah
+                              child: Text(
+                                "Deadline: ${DateFormat('dd-MM-yyyy').format(_tasks[index]["deadline"])}",
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white70,
+                                ),
+                              ),
                             ),
-                            const SizedBox(height: 5),
+
+                            // Checkbox dan Status
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   _tasks[index]["isDone"] ? "Done" : "Not Done",
                                   style: TextStyle(
+                                    fontSize: 16,
                                     color:
                                         _tasks[index]["isDone"]
                                             ? Colors.greenAccent
@@ -241,7 +259,7 @@ class _TodoPageState extends State<TodoPage> {
                                 ),
                                 Checkbox(
                                   value: _tasks[index]["isDone"],
-                                  activeColor: Colors.purpleAccent,
+                                  activeColor: Colors.blue.shade900,
                                   checkColor: Colors.white,
                                   onChanged: (bool? value) {
                                     setState(() {
