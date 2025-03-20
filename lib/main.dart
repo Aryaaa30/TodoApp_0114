@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'counter_page.dart';
 import 'todo_page.dart'; // Tetap gunakan impor ini
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent, // Agar menyatu dengan background
+      statusBarIconBrightness:
+          Brightness.dark, // Dark agar ikon status terlihat jelas
+    ),
+  );
+
   runApp(const MyApp());
 }
 
