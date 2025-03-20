@@ -61,14 +61,40 @@ class _TodoPageState extends State<TodoPage> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100,
-        automaticallyImplyLeading:
-            true, // Ini akan otomatis menampilkan tombol back jika ada
-        title: Align(
-          alignment: Alignment.centerRight,
-          child: CircleAvatar(
-            radius: 30,
-            backgroundImage: AssetImage('assets/images/testes.jpg'),
-          ),
+        automaticallyImplyLeading: true,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text(
+                  "Arya Anugrah", // Ganti dengan nama yang sesuai
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black, // Warna teks utama
+                  ),
+                ),
+                const SizedBox(
+                  height: 4,
+                ), // Jarak antara teks utama dan teks kecil
+                const Text(
+                  "20220140114", // Teks kecil tambahan
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey, // Warna abu-abu
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(width: 10), // Jarak antara teks dan gambar
+            CircleAvatar(
+              radius: 30,
+              backgroundImage: AssetImage('assets/images/testes.jpg'),
+            ),
+          ],
         ),
       ),
       body: SafeArea(
