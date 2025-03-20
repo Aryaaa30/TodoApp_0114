@@ -104,6 +104,25 @@ class _TodoPageState extends State<TodoPage> {
                 ),
               ),
               const SizedBox(height: 20),
+
+              // Daftar Task
+              const Text("List Tasks", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _tasks.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      color: Colors.grey[200],
+                      child: Padding(
+                         padding: const EdgeInsets.all(10.0),
+                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                         )
+                      )
+                    )
+                  }
+                )
+              )
             ],
           ),
         ),
