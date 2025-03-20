@@ -19,7 +19,13 @@ class _TodoPageState extends State<TodoPage> {
   void _addTask() {
     if (_taskController.text.isEmpty || _dateController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Task dan tanggal tidak boleh kosong!')),
+        const SnackBar(
+          content: Text(
+            'Task dan tanggal tidak boleh kosong!',
+            style: TextStyle(color: Colors.white),
+          ),
+          backgroundColor: Colors.red, // Warna merah untuk error
+        ),
       );
       return;
     }
@@ -35,9 +41,15 @@ class _TodoPageState extends State<TodoPage> {
       _selectedDate = null;
     });
 
-    ScaffoldMessenger.of(
-      context,
-    ).showSnackBar(const SnackBar(content: Text('Task added successfully')));
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text(
+          'Task added successfully!',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.green, // Warna hijau untuk sukses
+      ),
+    );
   }
 
   Future<void> _pickDate() async {
@@ -65,32 +77,21 @@ class _TodoPageState extends State<TodoPage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
+            const Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                const Text(
-                  "Arya Anugrah", // Ganti dengan nama yang sesuai
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black, // Warna teks utama
-                  ),
+                Text(
+                  "Arya Anugrah",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(
-                  height: 4,
-                ), // Jarak antara teks utama dan teks kecil
-                const Text(
-                  "20220140114", // Teks kecil tambahan
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey, // Warna abu-abu
-                  ),
+                Text(
+                  "Developer",
+                  style: TextStyle(fontSize: 14, color: Colors.grey),
                 ),
               ],
             ),
-            const SizedBox(width: 10), // Jarak antara teks dan gambar
-            CircleAvatar(
+            const SizedBox(width: 10),
+            const CircleAvatar(
               radius: 30,
               backgroundImage: AssetImage('assets/images/testes.jpg'),
             ),
@@ -102,7 +103,7 @@ class _TodoPageState extends State<TodoPage> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              const SizedBox(height: 20), // Jarak antara AppBar dan Form
+              const SizedBox(height: 20),
               Expanded(
                 child: Container(
                   padding: const EdgeInsets.all(16.0),
@@ -120,7 +121,6 @@ class _TodoPageState extends State<TodoPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Judul Form
                       const Center(
                         child: Text(
                           "Form Page",
@@ -137,7 +137,6 @@ class _TodoPageState extends State<TodoPage> {
                         key: _key,
                         child: Column(
                           children: [
-                            // Task Date
                             TextFormField(
                               controller: _dateController,
                               readOnly: true,
@@ -154,8 +153,6 @@ class _TodoPageState extends State<TodoPage> {
                               ),
                             ),
                             const SizedBox(height: 20),
-
-                            // Task Name
                             TextFormField(
                               controller: _taskController,
                               decoration: InputDecoration(
@@ -171,7 +168,6 @@ class _TodoPageState extends State<TodoPage> {
                       ),
                       const SizedBox(height: 20),
 
-                      // Submit Button
                       Align(
                         alignment: Alignment.center,
                         child: Container(
@@ -205,7 +201,6 @@ class _TodoPageState extends State<TodoPage> {
                       ),
                       const SizedBox(height: 20),
 
-                      // List Tasks
                       const Center(
                         child: Text(
                           "List Tasks",
