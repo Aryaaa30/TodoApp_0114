@@ -13,15 +13,28 @@ class _TodoPageState extends State<TodoPage> {
   final TextEditingController _taskController = TextEditingController();
   DateTime? _selectedDate;
 
-  List<String> _tasks = [];
+  List<Map<String, dynamic>> _tasks = [];
+
 
   void _addTask() {
-    if (_taskController.text.isNotEmpty) {
-      setState(() {
-        _tasks.add(_taskController.text);
-        _taskController.clear();
-      });
+    if (_taskController.text.isEmpty || _selectedDate == null) {
+      // Menampilkan SnackBar jika input kosong atau tanggal belum dipilih
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Task dan tanggal tidak boleh kosong!')),
+      );
+      return;
     }
+
+    setState(() {
+      _tasks.add({
+        "task": _taskController.text,
+        "isDone": false,
+        "deadline": _selectedDate, // Simpan tanggal deadline
+      });
+      _taskController.clear();
+      _selectedDate = null;
+    });
+
   }
 
   Future<void> _pickDate() async {
