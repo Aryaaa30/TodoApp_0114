@@ -119,7 +119,7 @@ class _TodoPageState extends State<TodoPage> {
                                 Icons.calendar_today,
                                 color:
                                     Colors
-                                        .white, // Warna ini akan di-replace oleh gradient
+                                        .white, // Warna digantikan oleh gradient
                               ),
                             ),
                             onPressed: _pickDate,
@@ -189,54 +189,69 @@ class _TodoPageState extends State<TodoPage> {
                   child: ListView.builder(
                     itemCount: _tasks.length,
                     itemBuilder: (context, index) {
-                      return Card(
-                        color: Colors.grey[200],
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                _tasks[index]["task"],
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                "Deadline: ${DateFormat('dd-MM-yyyy').format(_tasks[index]["deadline"])}",
-                                style: const TextStyle(color: Colors.blueGrey),
-                              ),
-                              const SizedBox(height: 5),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    _tasks[index]["isDone"]
-                                        ? "Done"
-                                        : "Not Done",
-                                    style: TextStyle(
-                                      color:
-                                          _tasks[index]["isDone"]
-                                              ? Colors.green
-                                              : Colors.red,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Checkbox(
-                                    value: _tasks[index]["isDone"],
-                                    activeColor: Colors.purple,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        _tasks[index]["isDone"] = value!;
-                                      });
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ],
+                      return Container(
+                        margin: const EdgeInsets.symmetric(vertical: 5),
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [
+                              Colors.black,
+                              Colors.blue,
+                            ], // Gradient Hitam ke Biru
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
                           ),
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.2),
+                              blurRadius: 5,
+                              spreadRadius: 2,
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              _tasks[index]["task"],
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white, // Agar lebih kontras
+                              ),
+                            ),
+                            Text(
+                              "Deadline: ${DateFormat('dd-MM-yyyy').format(_tasks[index]["deadline"])}",
+                              style: const TextStyle(color: Colors.white70),
+                            ),
+                            const SizedBox(height: 5),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  _tasks[index]["isDone"] ? "Done" : "Not Done",
+                                  style: TextStyle(
+                                    color:
+                                        _tasks[index]["isDone"]
+                                            ? Colors.greenAccent
+                                            : Colors.redAccent,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Checkbox(
+                                  value: _tasks[index]["isDone"],
+                                  activeColor: Colors.purpleAccent,
+                                  checkColor: Colors.white,
+                                  onChanged: (bool? value) {
+                                    setState(() {
+                                      _tasks[index]["isDone"] = value!;
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
                       );
                     },
