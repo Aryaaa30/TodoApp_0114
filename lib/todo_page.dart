@@ -104,9 +104,23 @@ class _TodoPageState extends State<TodoPage> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           suffixIcon: IconButton(
-                            icon: const Icon(
-                              Icons.calendar_today,
-                              color: Colors.blue,
+                            icon: ShaderMask(
+                              shaderCallback: (Rect bounds) {
+                                return const LinearGradient(
+                                  colors: [
+                                    Colors.black,
+                                    Colors.blue,
+                                  ], // Hitam ke Biru
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ).createShader(bounds);
+                              },
+                              child: const Icon(
+                                Icons.calendar_today,
+                                color:
+                                    Colors
+                                        .white, // Warna ini akan di-replace oleh gradient
+                              ),
                             ),
                             onPressed: _pickDate,
                           ),
@@ -130,23 +144,46 @@ class _TodoPageState extends State<TodoPage> {
                 ),
                 const SizedBox(height: 20),
 
-                // Submit Button
+                // Submit Button dengan Gradient Warna Biru dan Hitam
                 Align(
-                  alignment: Alignment.centerRight,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.purple,
+                  alignment: Alignment.center,
+                  child: Container(
+                    width: double.infinity, // Lebar penuh
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        colors: [Colors.black, Colors.blue], // Hitam ke Biru
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    onPressed: _addTask,
-                    child: const Text('Submit'),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor:
+                            Colors
+                                .transparent, // Transparan agar gradient terlihat
+                        shadowColor:
+                            Colors.transparent, // Menghilangkan shadow bawaan
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      onPressed: _addTask,
+                      child: const Text(
+                        'Submit',
+                        style: TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 20),
 
                 // List Tasks
-                const Text(
-                  "List Tasks",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                const Center(
+                  child: Text(
+                    "List Tasks",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                 ),
                 Expanded(
                   child: ListView.builder(
