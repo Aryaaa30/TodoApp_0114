@@ -33,6 +33,11 @@ class _TodoPageState extends State<TodoPage> {
       _taskController.clear();
       _selectedDate = null;
     });
+
+    // Menampilkan SnackBar sukses
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text('Task added successfully')));
   }
 
   Future<void> _pickDate() async {
